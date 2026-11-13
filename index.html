@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justus Julius Majula - Portfolio</title>
+    <title>Justus Majula - Portfolio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -19,14 +20,14 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
+                            50: '#f0fdf4',
                             100: '#e0f2fe',
                             400: '#38bdf8',
                             500: '#0070f3',
                             600: '#0284c7',
                             900: '#0f172a',
-                            card: '#1e293b',
-                            cardHover: '#334155'
+                            card: '#0f172a',
+                            cardHover: '#1e293b'
                         }
                     }
                 }
@@ -35,53 +36,108 @@
     </script>
     <style>
         body {
-            background-color: #0b0f19;
+            background-color: #060913;
             color: #f8fafc;
             font-family: 'Inter', sans-serif;
         }
         .active-tab {
-            background-color: #0070f3;
+            background: linear-gradient(135deg, #0070f3 0%, #06b6d4 100%);
             color: #ffffff;
-            box-shadow: 0 4px 14px 0 rgba(0, 112, 243, 0.39);
+            box-shadow: 0 4px 20px -2px rgba(6, 182, 212, 0.5);
         }
         .tab-btn {
             transition: all 0.2s ease-in-out;
         }
         .card-glow {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
         }
         .card-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 112, 243, 0.15), 0 8px 10px -6px rgba(0, 112, 243, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -5px rgba(56, 189, 248, 0.25), 0 0 15px 0 rgba(6, 182, 212, 0.15);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+        .vibrant-gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .vibrant-border {
+            border-image: linear-gradient(to right, #38bdf8, #818cf8, #c084fc) 1;
+        }
+
+        /* Light Mode Styles */
+        body.light-mode {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        body.light-mode header {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-color: #e2e8f0;
+        }
+        body.light-mode section {
+            background: linear-gradient(to bottom right, #ffffff, #f1f5f9) !important;
+            border-color: #cbd5e1 !important;
+        }
+        body.light-mode .bg-gradient-to-br,
+        body.light-mode #section-resume > div,
+        body.light-mode #section-projects > div > div {
+            background: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode h1, 
+        body.light-mode h3, 
+        body.light-mode h4, 
+        body.light-mode .text-white {
+            color: #0f172a !important;
+        }
+        body.light-mode .text-slate-300, 
+        body.light-mode .text-slate-400 {
+            color: #475569 !important;
+        }
+        body.light-mode .bg-slate-900\/60,
+        body.light-mode .bg-slate-950\/60,
+        body.light-mode .bg-slate-950\/70,
+        body.light-mode .bg-slate-950\/90 {
+            background-color: #f1f5f9 !important;
+            border-color: #e2e8f0 !important;
+        }
+        body.light-mode footer {
+            background-color: #f1f5f9;
+            border-color: #e2e8f0;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
 
     <!-- Navbar & Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0b0f19]/80 border-b border-slate-800">
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#060913]/85 border-b border-slate-800/80">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Logo & Brand -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-500 to-cyan-400 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-brand-500/30">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-cyan-500/30">
                         JM
                     </div>
                     <div>
-                        <h1 class="text-lg font-bold text-white leading-tight">Justus <span class="text-brand-400">Majula</span></h1>
-                        <p class="text-xs text-slate-400 font-medium">Power Generation Engineer</p>
+                        <h1 class="text-lg font-bold text-white leading-tight">Justus <span class="vibrant-gradient-text">Majula</span></h1>
+                        <p class="text-xs text-cyan-400 font-medium">Power Generation Engineer</p>
                     </div>
                 </div>
 
-                <!-- Contact CTA Button -->
-                <div class="flex items-center space-x-4">
-                    <a href="mailto:Justusmajula.juc@gmail.com" class="hidden sm:flex items-center space-x-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition duration-200 shadow-lg shadow-brand-500/25">
-                        <i class="fa-solid me-1 fa-envelope"></i>
-                        <span>Get in Touch</span>
-                    </a>
-                    <a href="tel:+255673754410" class="sm:hidden w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white">
-                        <i class="fa-solid fa-phone"></i>
+                <!-- Theme Toggle & Contact Buttons -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- Theme Toggle Button -->
+                    <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-cyan-400 border border-slate-700 flex items-center justify-center transition-all duration-200 shadow-md">
+                        <i class="fa-solid fa-sun text-lg" id="theme-icon"></i>
+                    </button>
+
+                    <!-- Resume PDF Download Button -->
+                    <a href="#" onclick="window.print(); return false;" class="flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-4 sm:px-5 py-2.5 rounded-xl transition duration-200 shadow-lg shadow-cyan-500/25">
+                        <i class="fa-solid fa-print"></i>
+                        <span class="hidden sm:inline">Print / Save PDF</span>
+                        <span class="sm:hidden">PDF</span>
                     </a>
                 </div>
             </div>
@@ -92,37 +148,34 @@
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
 
         <!-- Hero Section -->
-        <section class="bg-gradient-to-b from-brand-card to-[#111827] border border-slate-800 rounded-3xl p-6 sm:p-10 mb-8 shadow-xl relative overflow-hidden">
-            <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <section class="bg-gradient-to-br from-[#0c1327] via-[#0f172a] to-[#141b36] border border-cyan-500/20 rounded-3xl p-6 sm:p-10 mb-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-16 -top-16 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center space-x-2 bg-brand-500/10 border border-brand-500/20 px-3.5 py-1.5 rounded-full text-brand-400 text-xs font-semibold mb-4">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Available for Regional & International Consultations</span>
-                </div>
+            <div class="max-w-3xl relative z-10">
                 <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
-                    Justus Julius Majula
+                    Justus <span class="vibrant-gradient-text">Majula</span>
                 </h1>
-                <p class="text-xl text-brand-400 font-semibold mb-4">
+                <p class="text-xl font-semibold mb-4 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
                     Power Generation & Senior Service Engineer
                 </p>
                 <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-                    Specializing in Cummins high-capacity engines, generators, Automatic Transfer Switches (ATS), PLCs, and OBD diagnostics. Over 5 years of hands-on expertise delivering critical power infrastructure for telecommunications, referral hospitals, and commercial high-rises.
+                    Specializing in Cummins high-capacity engines, generators, Automatic Transfer Switches (ATS), PLCs, and OBD diagnostics. Over 5 years of hands-on expertise delivering critical power infrastructure for marine, industries, telecommunications, referral hospitals, and commercial high-rises.
                 </p>
 
                 <!-- Quick Metadata -->
-                <div class="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-400 border-t border-slate-800/80 pt-6">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-location-dot text-brand-400"></i>
+                <div class="flex flex-wrap gap-4 text-xs sm:text-sm text-slate-300 border-t border-slate-800/80 pt-6">
+                    <div class="flex items-center space-x-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <i class="fa-solid fa-location-dot text-cyan-400"></i>
                         <span>Dar es Salaam, Tanzania</span>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-phone text-brand-400"></i>
-                        <a href="tel:+255673754410" class="hover:text-white transition">+255 673754410</a>
+                    <div class="flex items-center space-x-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <i class="fa-solid fa-phone text-cyan-400"></i>
+                        <a href="tel:+255673754410" class="hover:text-cyan-300 transition">+255 673754410</a>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <i class="fa-solid fa-envelope text-brand-400"></i>
-                        <a href="mailto:Justusmajula.juc@gmail.com" class="hover:text-white transition">Justusmajula.juc@gmail.com</a>
+                    <div class="flex items-center space-x-2 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <i class="fa-solid fa-envelope text-cyan-400"></i>
+                        <a href="mailto:Justusmajula.juc@gmail.com" class="hover:text-cyan-300 transition">Justusmajula.juc@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -130,14 +183,14 @@
 
         <!-- Navigation Tabs -->
         <div class="flex justify-center mb-8">
-            <div class="bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 flex space-x-2 max-w-md w-full">
-                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn active-tab flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <span>Resume</span>
+            <div class="bg-slate-950/90 p-2 rounded-2xl border border-cyan-500/20 flex space-x-2 max-w-lg w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
+                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn active-tab flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2.5 transition-all duration-300">
+                    <i class="fa-solid fa-file-lines text-sm"></i>
+                    <span class="tracking-wide">Resume</span>
                 </button>
-                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn text-slate-400 hover:text-white flex-1 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-gears"></i>
-                    <span>Projects & Site Works</span>
+                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn text-slate-400 hover:text-cyan-300 flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2.5 transition-all duration-300">
+                    <i class="fa-solid fa-gears text-sm"></i>
+                    <span class="tracking-wide">Projects & Site Works</span>
                 </button>
             </div>
         </div>
@@ -146,56 +199,60 @@
         <div id="section-resume" class="space-y-8">
             
             <!-- Summary -->
-            <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
+            <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
                 <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3">
-                    <i class="fa-solid fa-user-gear text-brand-400"></i>
+                    <div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
                     <span>Professional Summary</span>
                 </h3>
                 <ul class="space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
                     <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-check text-brand-400 mt-1 text-xs"></i>
+                        <i class="fa-solid fa-circle-check text-cyan-400 mt-1 text-sm"></i>
                         <span>Senior Power Generation Engineer specializing in Cummins diesel platforms with 5+ years of operational experience.</span>
                     </li>
                     <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-check text-brand-400 mt-1 text-xs"></i>
+                        <i class="fa-solid fa-circle-check text-cyan-400 mt-1 text-sm"></i>
                         <span>Proficient in installation, troubleshooting, major engine overhauls, and PLC/PCC control panel configurations.</span>
                     </li>
                     <li class="flex items-start space-x-3">
-                        <i class="fa-solid fa-check text-brand-400 mt-1 text-xs"></i>
+                        <i class="fa-solid fa-circle-check text-cyan-400 mt-1 text-sm"></i>
                         <span>Proven track record leading critical power setups in international field operations and high-stakes infrastructure sites.</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Work Experience -->
-            <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
+            <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
                 <h3 class="text-xl font-bold text-white mb-6 flex items-center space-x-3">
-                    <i class="fa-solid fa-briefcase text-brand-400"></i>
+                    <div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
                     <span>Work Experience</span>
                 </h3>
 
-                <div class="space-y-8 border-l-2 border-slate-700 pl-4 sm:pl-6 ml-2">
+                <div class="space-y-8 border-l-2 border-cyan-500/40 pl-4 sm:pl-6 ml-2">
                     
                     <!-- Job 1 -->
                     <div class="relative">
-                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-slate-900"></div>
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                             <h4 class="text-lg font-bold text-white">Senior Service Engineer (Power Generation)</h4>
-                            <span class="text-xs font-semibold px-3 py-1 bg-brand-500/20 text-brand-400 rounded-full w-max mt-1 sm:mt-0">Nov 2022 – Present</span>
+                            <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full w-max mt-1 sm:mt-0">Nov 2022 – Present</span>
                         </div>
-                        <p class="text-sm font-semibold text-slate-400 mb-4">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
+                        <p class="text-sm font-semibold text-cyan-400/90 mb-4">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                                <h5 class="text-brand-400 text-xs font-bold uppercase tracking-wider mb-2"><i class="fa-solid fa-wrench me-1"></i> Mechanical</h5>
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-cyan-500/30 transition">
+                                <h5 class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-wrench me-2 text-cyan-400"></i> Mechanical</h5>
                                 <p class="text-xs text-slate-300 leading-relaxed">Pre-Delivery Inspections (PDI), new generator installations, major engine overhauls adhering strictly to OEM specs (QSX15, QSK, QSL, KTA, NTA, ISB, 4BT, 6BT, 6BTA).</p>
                             </div>
-                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                                <h5 class="text-brand-400 text-xs font-bold uppercase tracking-wider mb-2"><i class="fa-solid fa-bolt me-1"></i> Electrical</h5>
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-indigo-500/30 transition">
+                                <h5 class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-bolt me-2 text-indigo-400"></i> Electrical</h5>
                                 <p class="text-xs text-slate-300 leading-relaxed">Automatic/Manual changeover switches, large distribution & synchronization panels, ATS troubleshooting, and electronic sensor diagnostics.</p>
                             </div>
-                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                                <h5 class="text-brand-400 text-xs font-bold uppercase tracking-wider mb-2"><i class="fa-solid fa-laptop-code me-1"></i> Software</h5>
+                            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-purple-500/30 transition">
+                                <h5 class="text-purple-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-laptop-code me-2 text-purple-400"></i> Software</h5>
                                 <p class="text-xs text-slate-300 leading-relaxed">Deep On-Board Diagnostics (OBD), ECU updates, and PLC parameter calibration using Cummins Insite, InPower, and Deep Sea Software Suite.</p>
                             </div>
                         </div>
@@ -203,27 +260,66 @@
 
                     <!-- Job 2 -->
                     <div class="relative">
-                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 border-4 border-slate-900"></div>
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                             <h4 class="text-lg font-bold text-white">Service Engineer (Power Generation)</h4>
                             <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full w-max mt-1 sm:mt-0">Feb 2020 – Nov 2022</span>
                         </div>
-                        <p class="text-sm font-semibold text-slate-400 mb-2">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
-                        <ul class="list-disc list-inside text-xs sm:text-sm text-slate-300 space-y-1">
-                            <span>Diagnosed complex mechanical & electrical system failures with multimeters and diagnostic instruments.</span><br>
-                            <span>Maintained emergency backup power plants for immediate availability during utility grid outages.</span>
+                        <p class="text-sm font-semibold text-slate-400 mb-3">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">High-Capacity Fleet Maintenance:</strong> Serviced, inspected, and repaired Cummins diesel generator sets up to 2000kVA across commercial and industrial sites, covering QSX15, KTA, BTA, QSZ, QSK, and X-Series engine platforms.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Advanced Diagnostics & Controls:</strong> Performed mechanical and electrical root cause troubleshooting using Cummins INSITE, InPower, Deep Sea Electronics (DSE) controllers, digital multimeters, and OEM schematics to resolve recurring faults.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Field Operations & Emergency Response:</strong> Managed up to 3 client sites daily for preventive maintenance and rapid emergency breakdown recovery, minimizing production downtime and ensuring continuous outage readiness.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Installation & Commissioning:</strong> Executed the installation, component replacement, and functional testing of new power generation systems in strict alignment with manufacturer design specifications.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Safety & Technical Reporting:</strong> Maintained strict compliance with workplace safety regulations while delivering detailed malfunction reports and project progress updates to department supervisors.</span>
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Job 3 -->
                     <div class="relative">
-                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 border-4 border-slate-900"></div>
+                        <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                            <h4 class="text-lg font-bold text-white">Automobile Supporting Engineer</h4>
+                            <h4 class="text-lg font-bold text-white">Automotive Service Engineer</h4>
                             <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full w-max mt-1 sm:mt-0">Nov 2019 – Feb 2020</span>
                         </div>
-                        <p class="text-sm font-semibold text-slate-400 mb-2">Toyota Tanzania Ltd | Dar es Salaam, Tanzania</p>
-                        <p class="text-xs sm:text-sm text-slate-300">Provided technical maintenance support, performed variation studies and root-cause failure analysis for quality assurance.</p>
+                        <p class="text-sm font-semibold text-slate-400 mb-3">Toyota Tanzania Ltd | Dar es Salaam, Tanzania</p>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Customer & Technical Support:</strong> Advised customers on vehicle performance, maintenance schedules, and technical repair solutions to ensure high service satisfaction.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Quality Control & Analysis:</strong> Conducted failure, variation, and root-cause analyses to establish quality control measures and prevent recurring mechanical issues.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Diagnostics & Electrical Systems:</strong> Diagnosed complex mechanical and electrical faults—including wiring harnesses and relays—using computerized diagnostic equipment.</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Engine & Component Repair:</strong> Executed major repairs and replacements on brakes, wheel bearings, suspension components, and cylinder heads (including reconditioning and gasket replacement).</span>
+                            </li>
+                            <li class="flex items-start space-x-2.5">
+                                <span class="text-cyan-400 font-bold">•</span>
+                                <span><strong class="text-white font-semibold">Preventative Maintenance & Inspections:</strong> Performed multi-point safety inspections and scheduled maintenance services, such as oil changes and lubrications, to meet manufacturer standards.</span>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
@@ -232,103 +328,104 @@
             <!-- Education & Languages -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Education -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow">
                     <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3">
-                        <i class="fa-solid fa-graduation-cap text-brand-400"></i>
+                        <div class="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
                         <span>Education</span>
                     </h3>
                     <div class="space-y-4">
                         <div class="border-b border-slate-800 pb-3">
                             <h4 class="text-sm font-bold text-white">Bachelor Degree in Automobile Engineering</h4>
-                            <p class="text-xs text-brand-400">National Institute of Transport (NIT), Dar es Salaam</p>
-                            <span class="text-xs text-slate-500">2017 – 2021</span>
+                            <p class="text-xs text-cyan-400">National Institute of Transport (NIT), Dar es Salaam</p>
+                            <span class="text-xs text-slate-400">2017 – 2021</span>
                         </div>
                         <div class="border-b border-slate-800 pb-3">
                             <h4 class="text-sm font-bold text-white">Advanced Certificate of Secondary Education (ACSE)</h4>
                             <p class="text-xs text-slate-400">St. Mathew's Secondary School, Dar es Salaam</p>
-                            <span class="text-xs text-slate-500">2015 – 2016</span>
+                            <span class="text-xs text-slate-400">2015 – 2016</span>
                         </div>
                         <div>
                             <h4 class="text-sm font-bold text-white">Certificate of Secondary Education (CSE)</h4>
                             <p class="text-xs text-slate-400">Kanyigo Secondary School, Kagera</p>
-                            <span class="text-xs text-slate-500">2011 – 2014</span>
+                            <span class="text-xs text-slate-400">2011 – 2014</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Languages -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3">
-                            <i class="fa-solid fa-language text-brand-400"></i>
+                            <div class="w-9 h-9 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                                <i class="fa-solid fa-language"></i>
+                            </div>
                             <span>Languages</span>
                         </h3>
                         <div class="space-y-4">
                             <div>
                                 <div class="flex justify-between text-xs font-semibold mb-1">
                                     <span class="text-white">English</span>
-                                    <span class="text-brand-400">Full Professional Proficiency</span>
+                                    <span class="text-cyan-400">Full Professional Proficiency</span>
                                 </div>
-                                <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
-                                    <div class="h-full bg-brand-500 w-11/12"></div>
+                                <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                                    <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full w-11/12"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-xs font-semibold mb-1">
                                     <span class="text-white">Kiswahili</span>
-                                    <span class="text-brand-400">Native / Bilingual</span>
+                                    <span class="text-cyan-400">Native / Bilingual</span>
                                 </div>
-                                <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
-                                    <div class="h-full bg-brand-500 w-full"></div>
+                                <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                                    <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full w-full"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="mt-6 p-4 bg-slate-900/60 border border-slate-800 rounded-xl">
-                        <p class="text-xs text-slate-400"><i class="fa-solid fa-certificate text-brand-400 me-1"></i> Technical Certifications available upon request.</p>
-                    </div>
                 </div>
             </div>
 
-            <!-- Professional Referees (Styled matching user screenshot) -->
-            <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
+            <!-- Professional Referees -->
+            <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-xl font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-users text-brand-400"></i>
+                        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
                         <span>Professional Referees</span>
                     </h3>
-                    <a href="mailto:Justusmajula.juc@gmail.com" class="text-xs text-brand-400 hover:underline">Verify Details</a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
                     <!-- Referee Card 1 -->
-                    <div class="bg-[#161f30] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+                    <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/40 transition shadow-md">
                         <div>
-                            <div class="w-12 h-12 rounded-full bg-blue-600/30 text-blue-400 font-bold flex items-center justify-center text-sm mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600/30 to-cyan-500/20 border border-blue-500/40 text-cyan-300 font-extrabold flex items-center justify-center text-sm mb-4 shadow-sm">
                                 VN
                             </div>
                             <h4 class="text-base font-bold text-white">Eng. Victor Newton</h4>
-                            <p class="text-xs font-semibold text-brand-400">Senior Service Manager (Cummins)</p>
+                            <p class="text-xs font-semibold text-cyan-400">Senior Service Manager (Cummins)</p>
                             <p class="text-xs text-slate-400 mt-1">Car and General Trading Ltd</p>
                         </div>
                         <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
                             <div class="flex items-center space-x-2">
-                                <i class="fa-solid fa-phone text-slate-500"></i>
-                                <a href="tel:+255712900913" class="hover:text-white">+255 712 900 913</a>
+                                <i class="fa-solid fa-phone text-cyan-400"></i>
+                                <a href="tel:+255712900913" class="hover:text-white transition">+255 712 900 913</a>
                             </div>
                             <div class="flex items-center space-x-2 truncate">
-                                <i class="fa-solid fa-envelope text-slate-500"></i>
-                                <a href="mailto:Victor.anthony@cargen.co.tz" class="hover:text-white truncate">Victor.anthony@cargen.co.tz</a>
+                                <i class="fa-solid fa-envelope text-cyan-400"></i>
+                                <a href="mailto:Victor.anthony@cargen.co.tz" class="hover:text-white transition truncate">Victor.anthony@cargen.co.tz</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Referee Card 2 -->
-                    <div class="bg-[#161f30] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+                    <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-amber-500/40 transition shadow-md">
                         <div>
-                            <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-sm mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600/30 to-orange-500/20 border border-amber-500/40 text-amber-300 font-extrabold flex items-center justify-center text-sm mb-4 shadow-sm">
                                 LG
                             </div>
                             <h4 class="text-base font-bold text-white">Eng. Louis George</h4>
@@ -337,34 +434,34 @@
                         </div>
                         <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
                             <div class="flex items-center space-x-2">
-                                <i class="fa-solid fa-phone text-slate-500"></i>
-                                <a href="tel:+255622933159" class="hover:text-white">+255 622 933 159</a>
+                                <i class="fa-solid fa-phone text-amber-400"></i>
+                                <a href="tel:+255622933159" class="hover:text-white transition">+255 622 933 159</a>
                             </div>
                             <div class="flex items-center space-x-2 truncate">
-                                <i class="fa-solid fa-envelope text-slate-500"></i>
-                                <a href="mailto:Louis@azammarine.com" class="hover:text-white truncate">Louis@azammarine.com</a>
+                                <i class="fa-solid fa-envelope text-amber-400"></i>
+                                <a href="mailto:Louis@azammarine.com" class="hover:text-white transition truncate">Louis@azammarine.com</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Referee Card 3 -->
-                    <div class="bg-[#161f30] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-slate-700 transition">
+                    <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-purple-500/40 transition shadow-md">
                         <div>
-                            <div class="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-sm mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/30 to-pink-500/20 border border-purple-500/40 text-purple-300 font-extrabold flex items-center justify-center text-sm mb-4 shadow-sm">
                                 IK
                             </div>
                             <h4 class="text-base font-bold text-white">Eng. Illuminata Kaijanante</h4>
-                            <p class="text-xs font-semibold text-cyan-400">Sales & Service Coordinator</p>
+                            <p class="text-xs font-semibold text-purple-400">Sales & Service Coordinator</p>
                             <p class="text-xs text-slate-400 mt-1">Car and General Trading Ltd</p>
                         </div>
                         <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
                             <div class="flex items-center space-x-2">
-                                <i class="fa-solid fa-phone text-slate-500"></i>
-                                <a href="tel:+255657400000" class="hover:text-white">+255 657 400 000</a>
+                                <i class="fa-solid fa-phone text-purple-400"></i>
+                                <a href="tel:+255657400000" class="hover:text-white transition">+255 657 400 000</a>
                             </div>
                             <div class="flex items-center space-x-2 truncate">
-                                <i class="fa-solid fa-envelope text-slate-500"></i>
-                                <a href="mailto:Illuminata.kaijanante@cargen.co.tz" class="hover:text-white truncate">Illuminata.kaijanante@cargen.co.tz</a>
+                                <i class="fa-solid fa-envelope text-purple-400"></i>
+                                <a href="mailto:Illuminata.kaijanante@cargen.co.tz" class="hover:text-white transition truncate">Illuminata.kaijanante@cargen.co.tz</a>
                             </div>
                         </div>
                     </div>
@@ -379,20 +476,20 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <!-- Project 1 -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-bold text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">International Deployment</span>
-                            <i class="fa-solid fa-globe text-slate-600 text-lg"></i>
+                            <span class="text-xs font-bold text-cyan-300 bg-cyan-500/15 px-3 py-1 rounded-full border border-cyan-500/30">International Deployment</span>
+                            <i class="fa-solid fa-globe text-cyan-400 text-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Zimbabwe Power Generation Project</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1"></i> Cross-Border Industrial & Regional Power Site</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-cyan-400"></i> Cross-Border Industrial & Regional Power Site</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Served as the lead technical engineer for international deployment overseeing heavy generator setup, synchronization, and commissioning.
                         </p>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <h5 class="text-xs font-bold text-white uppercase tracking-wider">Key Deliverables:</h5>
-                            <ul class="text-xs text-slate-400 space-y-1">
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1">
                                 <li>• Comprehensive OBD diagnostics & ECU software flashing.</li>
                                 <li>• Deep Sea controller configurations for utility interface.</li>
                                 <li>• Emergency preventive maintenance under remote site constraints.</li>
@@ -402,20 +499,20 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-bold text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Commercial High-Rise</span>
-                            <i class="fa-solid fa-building text-slate-600 text-lg"></i>
+                            <span class="text-xs font-bold text-indigo-300 bg-indigo-500/15 px-3 py-1 rounded-full border border-indigo-500/30">Commercial High-Rise</span>
+                            <i class="fa-solid fa-building text-indigo-400 text-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Mwanga Tower Installation</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1"></i> Mwanga Tower Commercial Complex, Dar es Salaam</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-indigo-400"></i> Mwanga Tower Commercial Complex, Dar es Salaam</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Installed high-capacity Cummins backup generator systems and integrated heavy-duty Automatic Transfer Switch (ATS) panels.
                         </p>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <h5 class="text-xs font-bold text-white uppercase tracking-wider">Key Deliverables:</h5>
-                            <ul class="text-xs text-slate-400 space-y-1">
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1">
                                 <li>• Commissioned multi-gen synchronization boards.</li>
                                 <li>• Integrated building management load-sharing controls.</li>
                                 <li>• PCC parameter calibration for peak demand management.</li>
@@ -425,20 +522,20 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">Telecommunications</span>
-                            <i class="fa-solid fa-tower-cell text-slate-600 text-lg"></i>
+                            <span class="text-xs font-bold text-emerald-300 bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-500/30">Telecommunications</span>
+                            <i class="fa-solid fa-tower-cell text-emerald-400 text-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Telecom Tower Sites</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1"></i> National Telecom Towers & Remote Assets</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-emerald-400"></i> National Telecom Towers & Remote Assets</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Maintained high-uptime remote generator units for telecommunication towers to guarantee continuous mobile network availability.
                         </p>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <h5 class="text-xs font-bold text-white uppercase tracking-wider">Key Deliverables:</h5>
-                            <ul class="text-xs text-slate-400 space-y-1">
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1">
                                 <li>• Automated start/stop logic via ComAp & Deep Sea controllers.</li>
                                 <li>• Wiring harness overhaul and sensor replacements.</li>
                                 <li>• Routine preventive and zero-downtime maintenance.</li>
@@ -448,20 +545,20 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="bg-brand-card border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">Critical Infrastructure</span>
-                            <i class="fa-solid fa-hospital text-slate-600 text-lg"></i>
+                            <span class="text-xs font-bold text-purple-300 bg-purple-500/15 px-3 py-1 rounded-full border border-purple-500/30">Critical Infrastructure</span>
+                            <i class="fa-solid fa-hospital text-purple-400 text-xl"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Healthcare Power Infrastructure</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1"></i> Referral Hospitals & Regional Health Centers</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-purple-400"></i> Referral Hospitals & Regional Health Centers</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Engineered zero-downtime emergency backup setups for intensive care units (ICUs), surgical facilities, and cold storage units.
                         </p>
-                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                            <h5 class="text-xs font-bold text-white uppercase tracking-wider">Key Deliverables:</h5>
-                            <ul class="text-xs text-slate-400 space-y-1">
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-purple-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1">
                                 <li>• Zero-latency transfer switch configuration.</li>
                                 <li>• Pre-Delivery Inspections & heavy load bank testing.</li>
                                 <li>• Full compliance with healthcare power safety codes.</li>
@@ -477,12 +574,12 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/80 bg-[#080b12] py-8 text-center text-xs text-slate-500">
+    <footer class="border-t border-slate-800/80 bg-[#04060d] py-8 text-center text-xs text-slate-500">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p>© 2026 Justus Julius Majula. All Rights Reserved.</p>
+            <p>© Justus Majula. All Rights Reserved.</p>
             <div class="flex space-x-6 text-slate-400">
-                <a href="mailto:Justusmajula.juc@gmail.com" class="hover:text-brand-400 transition"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="tel:+255673754410" class="hover:text-brand-400 transition"><i class="fa-solid fa-phone"></i> Call</a>
+                <a href="mailto:Justusmajula.juc@gmail.com" class="hover:text-cyan-400 transition"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="tel:+255673754410" class="hover:text-cyan-400 transition"><i class="fa-solid fa-phone"></i> Call</a>
             </div>
         </div>
     </footer>
@@ -515,6 +612,21 @@
                 btnResume.classList.add('text-slate-400');
             }
         }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        }
     </script>
 </body>
 </html>
+```
