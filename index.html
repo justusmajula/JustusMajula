@@ -45,7 +45,11 @@
             box-shadow: 0 4px 20px -2px rgba(6, 182, 212, 0.5);
         }
         .tab-btn {
-            transition: all 0.2s ease-in-out;
+            transition: color 0.35s ease;
+        }
+        .tab-pill-slider {
+            transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
         }
         .card-glow {
             transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
@@ -62,6 +66,48 @@
         }
         .vibrant-border {
             border-image: linear-gradient(to right, #38bdf8, #818cf8, #c084fc) 1;
+        }
+
+        /* Professional Entry & Hover Animations */
+        @keyframes smoothSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes smoothSlideHorizontal {
+            0% {
+                opacity: 0;
+                transform: translateX(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: smoothSlideUp 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity;
+        }
+
+        .animate-tab-slide {
+            animation: smoothSlideHorizontal 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity;
+        }
+
+        .animate-delay-1 {
+            animation-delay: 0.18s;
+        }
+        
+        .animate-delay-2 {
+            animation-delay: 0.36s;
         }
 
         /* Light Mode Styles */
@@ -272,7 +318,7 @@
     <main class="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-8 flex-grow">
 
         <!-- Hero Section -->
-        <section class="bg-gradient-to-br from-[#0c1327] via-[#0f172a] to-[#141b36] border border-cyan-500/20 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-2xl relative overflow-hidden">
+        <section class="bg-gradient-to-br from-[#0c1327] via-[#0f172a] to-[#141b36] border border-cyan-500/20 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-2xl relative overflow-hidden animate-fade-in">
             <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-16 -top-16 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
             
@@ -306,21 +352,24 @@
         </section>
 
         <!-- Navigation Tabs -->
-        <div id="tab-nav-wrapper" class="flex justify-center mb-8">
-            <div class="bg-slate-950/90 p-2 rounded-2xl border border-cyan-500/20 flex space-x-2 max-w-lg w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
-                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn active-tab flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2.5 transition-all duration-300">
+        <div id="tab-nav-wrapper" class="flex justify-center mb-8 animate-fade-in animate-delay-1">
+            <div class="bg-slate-950/90 p-1.5 rounded-full border border-cyan-500/20 flex max-w-sm w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
+                <!-- Sliding Pill Indicator -->
+                <div id="tab-slider" class="tab-pill-slider active-tab absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-0.375rem)] rounded-full pointer-events-none"></div>
+                
+                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn relative z-10 text-white flex-1 py-2.5 px-5 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-file-lines text-sm"></i>
                     <span class="tracking-wide">Resume</span>
                 </button>
-                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn text-slate-400 hover:text-cyan-300 flex-1 py-3 px-5 rounded-xl text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2.5 transition-all duration-300">
+                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn relative z-10 text-slate-400 hover:text-cyan-300 flex-1 py-2.5 px-5 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-gears text-sm"></i>
-                    <span class="tracking-wide">Projects & Site Works</span>
+                    <span class="tracking-wide">Projects</span>
                 </button>
             </div>
         </div>
 
         <!-- SECTION 1: RESUME -->
-        <div id="section-resume" class="space-y-8">
+        <div id="section-resume" class="space-y-8 animate-fade-in animate-delay-2">
             
             <!-- Summary -->
             <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
@@ -595,7 +644,7 @@
         </div>
 
         <!-- SECTION 2: PROJECTS -->
-        <div id="section-projects" class="hidden space-y-6">
+        <div id="section-projects" class="space-y-6 hidden animate-fade-in">
             <div id="print-projects-header" class="hidden items-center space-x-3 border-b-2 border-cyan-600 pb-2 mb-4">
                 <i class="fa-solid fa-gears text-cyan-600 text-xl"></i>
                 <h2 class="text-2xl font-extrabold text-slate-900">Key Engineering Projects & Site Works</h2>
@@ -720,24 +769,35 @@
             const projectsSec = document.getElementById('section-projects');
             const btnResume = document.getElementById('btn-resume');
             const btnProjects = document.getElementById('btn-projects');
+            const tabSlider = document.getElementById('tab-slider');
 
             if (tabName === 'resume') {
-                resumeSec.classList.remove('hidden');
                 projectsSec.classList.add('hidden');
+                projectsSec.classList.remove('animate-tab-slide');
                 
-                btnResume.classList.add('active-tab');
+                resumeSec.classList.remove('hidden', 'animate-fade-in', 'animate-delay-2', 'animate-tab-slide');
+                void resumeSec.offsetWidth;
+                resumeSec.classList.add('animate-tab-slide');
+                
+                tabSlider.style.transform = 'translateX(0%)';
+                btnResume.classList.add('text-white');
                 btnResume.classList.remove('text-slate-400');
                 
-                btnProjects.classList.remove('active-tab');
+                btnProjects.classList.remove('text-white');
                 btnProjects.classList.add('text-slate-400');
             } else {
                 resumeSec.classList.add('hidden');
-                projectsSec.classList.remove('hidden');
+                resumeSec.classList.remove('animate-tab-slide');
                 
-                btnProjects.classList.add('active-tab');
+                projectsSec.classList.remove('hidden', 'animate-fade-in', 'animate-tab-slide');
+                void projectsSec.offsetWidth;
+                projectsSec.classList.add('animate-tab-slide');
+                
+                tabSlider.style.transform = 'translateX(100%)';
+                btnProjects.classList.add('text-white');
                 btnProjects.classList.remove('text-slate-400');
                 
-                btnResume.classList.remove('active-tab');
+                btnResume.classList.remove('text-white');
                 btnResume.classList.add('text-slate-400');
             }
         }
@@ -757,4 +817,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
