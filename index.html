@@ -48,8 +48,8 @@
             transition: color 0.35s ease;
         }
         .tab-pill-slider {
-            transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform;
+            transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, width;
         }
         .card-glow {
             transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
@@ -108,6 +108,98 @@
         
         .animate-delay-2 {
             animation-delay: 0.36s;
+        }
+
+        /* Logo Badge Animations */
+        @keyframes logoAmbientPulse {
+            0%, 100% {
+                box-shadow: 0 4px 18px -2px rgba(6, 182, 212, 0.35), 0 0 0 0 rgba(56, 189, 248, 0.25);
+            }
+            50% {
+                box-shadow: 0 8px 26px -2px rgba(99, 102, 241, 0.55), 0 0 0 5px rgba(56, 189, 248, 0);
+            }
+        }
+
+        .logo-badge {
+            position: relative;
+            overflow: hidden;
+            animation: logoAmbientPulse 3.6s ease-in-out infinite;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+            cursor: pointer;
+        }
+
+        .logo-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.45) 50%,
+                transparent 100%
+            );
+            transform: skewX(-22deg);
+            transition: left 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
+        .logo-group:hover .logo-badge {
+            transform: scale(1.08) rotate(-4deg);
+            box-shadow: 0 10px 28px -3px rgba(6, 182, 212, 0.65);
+        }
+
+        .logo-group:hover .logo-badge::after {
+            left: 145%;
+        }
+
+        .logo-group:active .logo-badge {
+            transform: scale(0.95) rotate(0deg);
+        }
+
+        /* Mechanical Gear Rotation Animations */
+        @keyframes gearRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes gearRotateReverse {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .gear-spin {
+            display: inline-block;
+            animation: gearRotate 10s linear infinite;
+            will-change: transform;
+        }
+
+        .gear-spin-reverse {
+            display: inline-block;
+            animation: gearRotateReverse 10s linear infinite;
+            will-change: transform;
+        }
+
+        .gear-spin-slow {
+            display: inline-block;
+            animation: gearRotate 14s linear infinite;
+            will-change: transform;
+        }
+
+        #btn-projects:hover .gear-spin,
+        #btn-projects:hover .gear-spin-reverse,
+        .card-glow:hover .gear-spin-slow {
+            animation-duration: 3s;
         }
 
         /* Light Mode Styles */
@@ -286,9 +378,9 @@
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Logo & Brand -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-extrabold text-xl text-white shadow-lg shadow-cyan-500/30">
-                        JM
+                <div class="flex items-center space-x-3 logo-group select-none" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                    <div class="logo-badge w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-extrabold text-xl text-white">
+                        <span class="relative z-10 tracking-tight">JM</span>
                     </div>
                     <div>
                         <h1 class="text-lg font-bold text-white leading-tight">Justus <span class="vibrant-gradient-text">Majula</span></h1>
@@ -353,17 +445,20 @@
 
         <!-- Navigation Tabs -->
         <div id="tab-nav-wrapper" class="flex justify-center mb-8 animate-fade-in animate-delay-1">
-            <div class="bg-slate-950/90 p-1.5 rounded-full border border-cyan-500/20 flex max-w-sm w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
+            <div class="bg-slate-950/90 p-1.5 rounded-full border border-cyan-500/20 inline-flex items-center max-w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
                 <!-- Sliding Pill Indicator -->
-                <div id="tab-slider" class="tab-pill-slider active-tab absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-0.375rem)] rounded-full pointer-events-none"></div>
+                <div id="tab-slider" class="tab-pill-slider active-tab absolute top-1.5 bottom-1.5 left-0 rounded-full pointer-events-none"></div>
                 
-                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn relative z-10 text-white flex-1 py-2.5 px-5 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
+                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn relative z-10 text-white py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-file-lines text-sm"></i>
                     <span class="tracking-wide">Resume</span>
                 </button>
-                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn relative z-10 text-slate-400 hover:text-cyan-300 flex-1 py-2.5 px-5 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-gears text-sm"></i>
-                    <span class="tracking-wide">Projects</span>
+                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn relative z-10 text-slate-400 hover:text-cyan-300 py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
+                    <span class="relative inline-flex items-center justify-center w-5 h-4 shrink-0">
+                        <i class="fa-solid fa-gear text-[12px] gear-spin -mr-0.5 -mt-1"></i>
+                        <i class="fa-solid fa-gear text-[9px] gear-spin-reverse mt-1.5"></i>
+                    </span>
+                    <span class="tracking-wide whitespace-nowrap">Projects &amp; Site Works</span>
                 </button>
             </div>
         </div>
@@ -375,7 +470,7 @@
             <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
                 <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3">
                     <div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                        <i class="fa-solid fa-user-gear"></i>
+                        <i class="fa-solid fa-gear gear-spin-slow"></i>
                     </div>
                     <span>Professional Summary</span>
                 </h3>
@@ -646,7 +741,10 @@
         <!-- SECTION 2: PROJECTS -->
         <div id="section-projects" class="space-y-6 hidden animate-fade-in">
             <div id="print-projects-header" class="hidden items-center space-x-3 border-b-2 border-cyan-600 pb-2 mb-4">
-                <i class="fa-solid fa-gears text-cyan-600 text-xl"></i>
+                <span class="relative inline-flex items-center justify-center w-6 h-5 text-cyan-600">
+                    <i class="fa-solid fa-gear text-base gear-spin -mr-0.5 -mt-1"></i>
+                    <i class="fa-solid fa-gear text-xs gear-spin-reverse mt-2"></i>
+                </span>
                 <h2 class="text-2xl font-extrabold text-slate-900">Key Engineering Projects & Site Works</h2>
             </div>
             
@@ -764,12 +862,21 @@
 
     <!-- Tab Toggle Script -->
     <script>
+        let currentTab = 'resume';
+
+        function positionTabSlider(btn) {
+            const tabSlider = document.getElementById('tab-slider');
+            if (!tabSlider || !btn) return;
+            tabSlider.style.width = `${btn.offsetWidth}px`;
+            tabSlider.style.transform = `translateX(${btn.offsetLeft}px)`;
+        }
+
         function switchTab(tabName) {
+            currentTab = tabName;
             const resumeSec = document.getElementById('section-resume');
             const projectsSec = document.getElementById('section-projects');
             const btnResume = document.getElementById('btn-resume');
             const btnProjects = document.getElementById('btn-projects');
-            const tabSlider = document.getElementById('tab-slider');
 
             if (tabName === 'resume') {
                 projectsSec.classList.add('hidden');
@@ -779,7 +886,7 @@
                 void resumeSec.offsetWidth;
                 resumeSec.classList.add('animate-tab-slide');
                 
-                tabSlider.style.transform = 'translateX(0%)';
+                positionTabSlider(btnResume);
                 btnResume.classList.add('text-white');
                 btnResume.classList.remove('text-slate-400');
                 
@@ -793,7 +900,7 @@
                 void projectsSec.offsetWidth;
                 projectsSec.classList.add('animate-tab-slide');
                 
-                tabSlider.style.transform = 'translateX(100%)';
+                positionTabSlider(btnProjects);
                 btnProjects.classList.add('text-white');
                 btnProjects.classList.remove('text-slate-400');
                 
@@ -801,6 +908,14 @@
                 btnResume.classList.add('text-slate-400');
             }
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            positionTabSlider(document.getElementById('btn-resume'));
+        });
+
+        window.addEventListener('resize', () => {
+            positionTabSlider(document.getElementById(currentTab === 'resume' ? 'btn-resume' : 'btn-projects'));
+        });
 
         function toggleTheme() {
             const body = document.body;
@@ -817,4 +932,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
