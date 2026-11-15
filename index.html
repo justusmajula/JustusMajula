@@ -254,10 +254,21 @@
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-            body {
+            html, body, body.light-mode {
                 background-color: #ffffff !important;
                 color: #0f172a !important;
-                font-size: 11pt;
+                font-size: 10.5pt;
+            }
+            /* Force all animated elements to be visible and stop animations in print */
+            .animate-fade-in,
+            .animate-tab-slide,
+            .animate-delay-1,
+            .animate-delay-2,
+            #section-resume,
+            #section-projects {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
             }
             header,
             footer,
@@ -269,8 +280,17 @@
                 padding: 0 !important;
                 margin: 0 !important;
             }
-            /* Hero Banner Styled for Print */
-            main > section:first-of-type {
+            /* Ensure bullet points and lists align properly on print */
+            ul.space-y-2\.5 {
+                padding-left: 1.25rem !important;
+            }
+            ul.space-y-2\.5 li {
+                margin-bottom: 6px !important;
+                page-break-inside: avoid;
+            }
+            /* Hero Banner Styled Identically in Dark & Light Mode Print */
+            main > section:first-of-type,
+            body.light-mode main > section:first-of-type {
                 background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
                 color: #ffffff !important;
                 border: 2px solid #0284c7 !important;
@@ -282,15 +302,22 @@
                 break-inside: avoid;
             }
             main > section:first-of-type h1,
-            main > section:first-of-type h1 span {
+            body.light-mode main > section:first-of-type h1 {
                 color: #ffffff !important;
+            }
+            main > section:first-of-type h1 span,
+            body.light-mode main > section:first-of-type h1 span {
+                color: #38bdf8 !important;
                 -webkit-text-fill-color: #38bdf8 !important;
             }
-            main > section:first-of-type p {
+            main > section:first-of-type p,
+            body.light-mode main > section:first-of-type p {
                 color: #e2e8f0 !important;
             }
             main > section:first-of-type .text-slate-300,
-            main > section:first-of-type a {
+            main > section:first-of-type a,
+            body.light-mode main > section:first-of-type .text-slate-300,
+            body.light-mode main > section:first-of-type a {
                 color: #f1f5f9 !important;
             }
             /* Show Both Resume and Projects in Print */
@@ -299,9 +326,13 @@
                 display: block !important;
             }
             #section-projects {
-                margin-top: 22px !important;
+                margin-top: 10px !important;
                 page-break-before: always;
                 break-before: page;
+            }
+            /* Stack project cards cleanly in print instead of multi-column CSS Grid to prevent blank page pushes */
+            #section-projects > .grid {
+                display: block !important;
             }
             #print-projects-header {
                 display: flex !important;
@@ -310,17 +341,27 @@
                 page-break-before: always !important;
                 break-before: page !important;
             }
-            /* Cards & Sections */
+            /* Cards & Sections Identical Across Themes */
             #section-resume > div,
-            #section-projects > div > div {
+            #section-resume > div > div,
+            #section-projects > div > div,
+            body.light-mode #section-resume > div,
+            body.light-mode #section-resume > div > div,
+            body.light-mode #section-projects > div > div {
                 background: #ffffff !important;
+                background-image: none !important;
                 border: 1.5px solid #cbd5e1 !important;
                 border-top: 4px solid #0284c7 !important;
                 border-radius: 12px !important;
-                padding: 16px 20px !important;
-                margin-bottom: 16px !important;
+                padding: 15px 18px !important;
+                margin-bottom: 14px !important;
                 box-shadow: none !important;
                 transform: none !important;
+            }
+            /* Language progress bar track in print */
+            .bg-slate-950 {
+                background-color: #e2e8f0 !important;
+                border-color: #cbd5e1 !important;
             }
             /* Keep individual cards from splitting awkwardly */
             .print-avoid-break,
@@ -329,45 +370,59 @@
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
-            /* Typography Overrides for Crisp Contrast */
-            h3, h4 {
+            /* Typography Overrides for Crisp Contrast in Print */
+            h3, h4, .text-white,
+            body.light-mode h3, body.light-mode h4, body.light-mode .text-white {
                 color: #0f172a !important;
             }
             .text-slate-300,
-            .text-slate-400 {
+            .text-slate-400,
+            body.light-mode .text-slate-300,
+            body.light-mode .text-slate-400 {
                 color: #334155 !important;
             }
-            .text-cyan-400 {
+            .text-cyan-400, body.light-mode .text-cyan-400 {
                 color: #0284c7 !important;
             }
-            .text-indigo-400 {
+            .text-indigo-400, body.light-mode .text-indigo-400 {
                 color: #4f46e5 !important;
             }
-            .text-purple-400 {
+            .text-purple-400, body.light-mode .text-purple-400 {
                 color: #7e22ce !important;
             }
-            .text-emerald-400 {
+            .text-emerald-400, body.light-mode .text-emerald-400 {
                 color: #047857 !important;
             }
-            .text-amber-400 {
+            .text-amber-400, body.light-mode .text-amber-400 {
                 color: #b45309 !important;
             }
+            .text-rose-400, body.light-mode .text-rose-400 {
+                color: #be123c !important;
+            }
             /* Inner Highlight Boxes */
+            .bg-slate-900,
+            .bg-slate-900\/60,
             .bg-slate-950\/60,
-            .bg-slate-950\/70 {
+            .bg-slate-950\/70,
+            body.light-mode .bg-slate-900,
+            body.light-mode .bg-slate-900\/60,
+            body.light-mode .bg-slate-950\/60,
+            body.light-mode .bg-slate-950\/70 {
                 background-color: #f8fafc !important;
                 border: 1px solid #cbd5e1 !important;
+                color: #0f172a !important;
             }
-            /* Preserve Grid Columns on Paper */
-            .md\:grid-cols-3 {
+            /* Preserve Grid Columns on Paper for Resume sections */
+            #section-resume .md\:grid-cols-3 {
                 grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
                 gap: 12px !important;
             }
-            .md\:grid-cols-2 {
+            #section-resume .md\:grid-cols-2 {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 14px !important;
             }
-            .bg-slate-800 {
+            .bg-slate-800,
+            body.light-mode .bg-slate-800 {
                 background-color: #e0f2fe !important;
                 color: #0369a1 !important;
             }
@@ -545,19 +600,19 @@
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Advanced Diagnostics & Controls:</strong> Performed mechanical and electrical root cause troubleshooting using Cummins INSITE, InPower, Deep Sea Electronics (DSE) controllers, digital multimeters, and OEM schematics to resolve recurring faults.</span>
+                                <span><strong class="text-white font-semibold">Advanced Diagnostics &amp; Controls:</strong> Performed mechanical and electrical root cause troubleshooting using Cummins INSITE, InPower, Deep Sea Electronics (DSE) controllers, digital multimeters, and OEM schematics to resolve recurring faults.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Field Operations & Emergency Response:</strong> Managed up to 3 client sites daily for preventive maintenance and rapid emergency breakdown recovery, minimizing production downtime and ensuring continuous outage readiness.</span>
+                                <span><strong class="text-white font-semibold">Field Operations &amp; Emergency Response:</strong> Managed up to 3 client sites daily for preventive maintenance and rapid emergency breakdown recovery, minimizing production downtime and ensuring continuous outage readiness.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Installation & Commissioning:</strong> Executed the installation, component replacement, and functional testing of new power generation systems in strict alignment with manufacturer design specifications.</span>
+                                <span><strong class="text-white font-semibold">Installation &amp; Commissioning:</strong> Executed the installation, component replacement, and functional testing of new power generation systems in strict alignment with manufacturer design specifications.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Safety & Technical Reporting:</strong> Maintained strict compliance with workplace safety regulations while delivering detailed malfunction reports and project progress updates to department supervisors.</span>
+                                <span><strong class="text-white font-semibold">Safety &amp; Technical Reporting:</strong> Maintained strict compliance with workplace safety regulations while delivering detailed malfunction reports and project progress updates to department supervisors.</span>
                             </li>
                         </ul>
                     </div>
@@ -573,23 +628,23 @@
                         <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Customer & Technical Support:</strong> Advised customers on vehicle performance, maintenance schedules, and technical repair solutions to ensure high service satisfaction.</span>
+                                <span><strong class="text-white font-semibold">Customer &amp; Technical Support:</strong> Advised customers on vehicle performance, maintenance schedules, and technical repair solutions to ensure high service satisfaction.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Quality Control & Analysis:</strong> Conducted failure, variation, and root-cause analyses to establish quality control measures and prevent recurring mechanical issues.</span>
+                                <span><strong class="text-white font-semibold">Quality Control &amp; Analysis:</strong> Conducted failure, variation, and root-cause analyses to establish quality control measures and prevent recurring mechanical issues.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Diagnostics & Electrical Systems:</strong> Diagnosed complex mechanical and electrical faults—including wiring harnesses and relays—using computerized diagnostic equipment.</span>
+                                <span><strong class="text-white font-semibold">Diagnostics &amp; Electrical Systems:</strong> Diagnosed complex mechanical and electrical faults—including wiring harnesses and relays—using computerized diagnostic equipment.</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Engine & Component Repair:</strong> Executed major repairs and replacements on brakes, wheel bearings, suspension components, and cylinder heads (including reconditioning and gasket replacement).</span>
+                                <span><strong class="text-white font-semibold">Engine &amp; Component Repair:</strong> Executed major repairs and replacements on brakes, wheel bearings, suspension components, and cylinder heads (including reconditioning and gasket replacement).</span>
                             </li>
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
-                                <span><strong class="text-white font-semibold">Preventative Maintenance & Inspections:</strong> Performed multi-point safety inspections and scheduled maintenance services, such as oil changes and lubrications, to meet manufacturer standards.</span>
+                                <span><strong class="text-white font-semibold">Preventative Maintenance &amp; Inspections:</strong> Performed multi-point safety inspections and scheduled maintenance services, such as oil changes and lubrications, to meet manufacturer standards.</span>
                             </li>
                         </ul>
                     </div>
@@ -838,10 +893,56 @@
                         </p>
                         <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
                             <h5 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Key Deliverables:</h5>
-                            <ul class="text-xs text-slate-300 space-y-1">
-                                <li>• Automated start/stop logic via ComAp & Deep Sea controllers.</li>
-                                <li>• Wiring harness overhaul and sensor replacements.</li>
-                                <li>• Routine preventive and zero-downtime maintenance.</li>
+                            <ul class="text-xs text-slate-300 space-y-1.5">
+                                <li>• Automated Start/Stop &amp; ATS Logic: Configured and calibrated ComAp InteliATS2 and Deep Sea Electronics (DSE) controllers for remote auto-start and mains-failure transfer.</li>
+                                <li>• Electrical &amp; Sensor Overhaul: Rebuilt damaged engine wiring harnesses and replaced magnetic pickups (MPU), oil pressure senders, and coolant temperature sensors.</li>
+                                <li>• Preventive Fleet Reliability: Executed scheduled preventive maintenance and fuel-system servicing across remote off-grid sites to eliminate network downtime.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-bold text-amber-300 bg-amber-500/15 px-3 py-1 rounded-full border border-amber-500/30">Marine Propulsion & Auxiliary</span>
+                            <i class="fa-solid fa-ship text-amber-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Marine Vessel Auxiliary &amp; Overhaul</h3>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-amber-400"></i> Dar es Salaam &amp; Zanzibar Maritime Operations</p>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                            Executed major mechanical overhauls, electronic diagnostics, and auxiliary generator servicing for high-speed passenger marine vessels.
+                        </p>
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1.5">
+                                <li>• Major Engine Rebuilds: Performed top-end and full engine overhauls on Cummins KTA, QSK, and 6BTA marine auxiliary units strictly to OEM tolerances.</li>
+                                <li>• Electronic Governor &amp; ECU Calibration: Used Cummins INSITE to diagnose injector trim codes, boost pressure anomalies, and electronic governor stability under marine load.</li>
+                                <li>• Cooling &amp; Safety Interlocks: Overhauled seawater heat exchangers, raw-water pumps, and marine emergency shutdown alarm circuits prior to sea trials.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-bold text-rose-300 bg-rose-500/15 px-3 py-1 rounded-full border border-rose-500/30">Heavy Manufacturing</span>
+                            <i class="fa-solid fa-industry text-rose-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Industrial Prime Power Plants (Up to 2000 kVA)</h3>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-rose-400"></i> Manufacturing &amp; Processing Plants, Tanzania</p>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                            Delivered full-lifecycle installation, load-bank commissioning, and rapid breakdown recovery for heavy industrial prime power plants.
+                        </p>
+                        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                            <h5 class="text-xs font-bold text-rose-400 uppercase tracking-wider">Key Deliverables:</h5>
+                            <ul class="text-xs text-slate-300 space-y-1.5">
+                                <li>• High-Capacity Commissioning: Executed Pre-Delivery Inspections (PDI), mechanical alignment, exhaust ducting, and resistive load-bank testing on 1000–2000 kVA Cummins QSK/QSX15 sets.</li>
+                                <li>• Switchgear &amp; Protection Relay Tuning: Configured over-current, reverse-power, and earth-fault protection parameters across main distribution panels.</li>
+                                <li>• Emergency Outage Recovery: Diagnosed and resolved critical fuel-rail, turbocharger, and AVR excitation failures on-site to restore factory production within strict SLAs.</li>
                             </ul>
                         </div>
                     </div>
@@ -936,4 +1037,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
