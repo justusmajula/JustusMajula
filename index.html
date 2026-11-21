@@ -46,6 +46,7 @@
         }
         .tab-btn {
             transition: color 0.35s ease;
+            cursor: pointer;
         }
         .tab-pill-slider {
             transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
@@ -63,9 +64,6 @@
             background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .vibrant-border {
-            border-image: linear-gradient(to right, #38bdf8, #818cf8, #c084fc) 1;
         }
 
         /* Professional Entry & Hover Animations */
@@ -105,7 +103,7 @@
         .animate-delay-1 {
             animation-delay: 0.18s;
         }
-        
+
         .animate-delay-2 {
             animation-delay: 0.36s;
         }
@@ -301,29 +299,30 @@
             background: linear-gradient(to bottom right, #ffffff, #f1f5f9) !important;
             border-color: #cbd5e1 !important;
         }
-        body.light-mode .bg-gradient-to-br,
         body.light-mode #section-resume > div,
-        body.light-mode #section-projects > div > div {
+        body.light-mode #section-projects .project-card {
             background: #ffffff !important;
             border-color: #e2e8f0 !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        body.light-mode h1, 
-        body.light-mode h3, 
-        body.light-mode h4, 
+        body.light-mode h1,
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode h4,
         body.light-mode .text-white {
             color: #0f172a !important;
         }
-        body.light-mode .text-slate-300, 
+        body.light-mode .text-slate-300,
         body.light-mode .text-slate-400 {
             color: #475569 !important;
         }
         body.light-mode .bg-slate-900\/60,
         body.light-mode .bg-slate-950\/60,
         body.light-mode .bg-slate-950\/70,
-        body.light-mode .bg-slate-950\/90 {
+        body.light-mode .bg-slate-950\/90,
+        body.light-mode .upload-dropzone {
             background-color: #f1f5f9 !important;
-            border-color: #e2e8f0 !important;
+            border-color: #cbd5e1 !important;
         }
         body.light-mode footer {
             background-color: #f1f5f9;
@@ -343,9 +342,8 @@
             html, body, body.light-mode {
                 background-color: #ffffff !important;
                 color: #0f172a !important;
-                font-size: 10.5pt;
+                font-size: 10.2pt;
             }
-            /* Force all animated elements to be visible and stop animations in print */
             .animate-fade-in,
             .animate-tab-slide,
             .animate-delay-1,
@@ -361,7 +359,11 @@
             }
             header,
             footer,
-            #tab-nav-wrapper {
+            #tab-nav-wrapper,
+            .upload-controls,
+            .photo-remove-btn,
+            #lightbox-modal,
+            #toast-banner {
                 display: none !important;
             }
             main {
@@ -369,25 +371,23 @@
                 padding: 0 !important;
                 margin: 0 !important;
             }
-            /* Ensure bullet points and lists align properly on print */
             ul.space-y-2\.5 {
                 padding-left: 1.25rem !important;
             }
             ul.space-y-2\.5 li {
-                margin-bottom: 6px !important;
-                page-break-inside: avoid;
+                margin-bottom: 5px !important;
+                break-inside: avoid;
             }
-            /* Hero Banner Styled Identically in Dark & Light Mode Print */
+            /* Hero Banner */
             main > section:first-of-type,
             body.light-mode main > section:first-of-type {
                 background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
                 color: #ffffff !important;
                 border: 2px solid #0284c7 !important;
                 border-radius: 14px !important;
-                padding: 20px 24px !important;
-                margin-bottom: 18px !important;
+                padding: 18px 22px !important;
+                margin-bottom: 16px !important;
                 box-shadow: none !important;
-                page-break-inside: avoid;
                 break-inside: avoid;
             }
             main > section:first-of-type h1,
@@ -400,11 +400,9 @@
                 -webkit-text-fill-color: #38bdf8 !important;
             }
             main > section:first-of-type p,
-            body.light-mode main > section:first-of-type p {
-                color: #e2e8f0 !important;
-            }
             main > section:first-of-type .text-slate-300,
             main > section:first-of-type a,
+            body.light-mode main > section:first-of-type p,
             body.light-mode main > section:first-of-type .text-slate-300,
             body.light-mode main > section:first-of-type a {
                 color: #f1f5f9 !important;
@@ -415,53 +413,48 @@
                 display: block !important;
             }
             #section-projects {
-                margin-top: 10px !important;
-                page-break-before: always;
+                margin-top: 14px !important;
                 break-before: page;
             }
-            /* Stack project cards cleanly in print instead of multi-column CSS Grid to prevent blank page pushes */
             #section-projects > .grid {
-                display: block !important;
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
             }
             #print-projects-header {
                 display: flex !important;
             }
-            .print-page-break {
-                page-break-before: always !important;
-                break-before: page !important;
-            }
-            /* Cards & Sections Identical Across Themes */
+            /* Cards & Sections */
             #section-resume > div,
-            #section-resume > div > div,
-            #section-projects > div > div,
+            #section-projects .project-card,
             body.light-mode #section-resume > div,
-            body.light-mode #section-resume > div > div,
-            body.light-mode #section-projects > div > div {
+            body.light-mode #section-projects .project-card {
                 background: #ffffff !important;
                 background-image: none !important;
                 border: 1.5px solid #cbd5e1 !important;
                 border-top: 4px solid #0284c7 !important;
                 border-radius: 12px !important;
-                padding: 15px 18px !important;
+                padding: 14px 18px !important;
                 margin-bottom: 14px !important;
                 box-shadow: none !important;
                 transform: none !important;
             }
-            /* Language progress bar track in print */
+            .project-photo-thumb {
+                height: 110px !important;
+                border-color: #cbd5e1 !important;
+            }
             .bg-slate-950 {
                 background-color: #e2e8f0 !important;
                 border-color: #cbd5e1 !important;
             }
-            /* Keep individual cards from splitting awkwardly */
             .print-avoid-break,
-            #section-projects > div > div,
-            #section-resume > div:first-child {
-                page-break-inside: avoid;
+            .project-card,
+            #section-resume > div:first-child,
+            #section-resume .space-y-8 > .relative {
                 break-inside: avoid;
             }
-            /* Typography Overrides for Crisp Contrast in Print */
-            h3, h4, .text-white,
-            body.light-mode h3, body.light-mode h4, body.light-mode .text-white {
+            h2, h3, h4, .text-white,
+            body.light-mode h2, body.light-mode h3, body.light-mode h4, body.light-mode .text-white {
                 color: #0f172a !important;
             }
             .text-slate-300,
@@ -488,7 +481,6 @@
             .text-rose-400, body.light-mode .text-rose-400 {
                 color: #be123c !important;
             }
-            /* Inner Highlight Boxes */
             .bg-slate-900,
             .bg-slate-900\/60,
             .bg-slate-950\/60,
@@ -501,14 +493,13 @@
                 border: 1px solid #cbd5e1 !important;
                 color: #0f172a !important;
             }
-            /* Preserve Grid Columns on Paper for Resume sections */
             #section-resume .md\:grid-cols-3 {
                 grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-                gap: 12px !important;
+                gap: 10px !important;
             }
             #section-resume .md\:grid-cols-2 {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 14px !important;
+                gap: 12px !important;
             }
             .bg-slate-800,
             body.light-mode .bg-slate-800 {
@@ -520,35 +511,42 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
 
+    <!-- Non-blocking Notification Toast -->
+    <div id="toast-banner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 bg-slate-900/95 border border-rose-500/50 text-slate-100 text-xs sm:text-sm px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md max-w-sm">
+        <i class="fa-solid fa-circle-exclamation text-rose-400 text-base shrink-0"></i>
+        <span id="toast-message">Storage notice</span>
+        <button type="button" onclick="hideToast()" class="text-slate-400 hover:text-white ml-1" aria-label="Dismiss notification">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
     <!-- Navbar & Header -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#060913]/85 border-b border-slate-800/80">
         <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12">
             <div class="flex items-center justify-between h-20">
-                
+
                 <!-- Logo & Brand -->
                 <div class="flex items-center space-x-3 logo-group select-none" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
                     <div class="logo-badge w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-extrabold text-xl text-white">
                         <span class="relative z-10 tracking-tight">JM</span>
                     </div>
                     <div>
-                        <h1 class="text-lg font-bold text-white leading-tight">Justus <span class="vibrant-gradient-text">Majula</span></h1>
-                        <p class="text-xs text-cyan-400 font-medium">Power Generation Engineer</p>
+                        <span class="block text-lg font-bold text-white leading-tight">Justus <span class="vibrant-gradient-text">Majula</span></span>
+                        <span class="block text-xs text-cyan-400 font-medium">Power Generation Engineer</span>
                     </div>
                 </div>
 
-                <!-- Theme Toggle & Contact Buttons -->
+                <!-- Theme Toggle & Print Buttons -->
                 <div class="flex items-center space-x-3 sm:space-x-4">
-                    <!-- Theme Toggle Button -->
-                    <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-cyan-400 border border-slate-700 flex items-center justify-center transition-all duration-200 shadow-md" aria-label="Toggle Theme">
+                    <button type="button" onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-cyan-400 border border-slate-700 flex items-center justify-center transition-all duration-200 shadow-md" aria-label="Toggle Theme">
                         <i class="fa-solid fa-sun text-lg" id="theme-icon"></i>
                     </button>
 
-                    <!-- Resume PDF Download Button -->
-                    <a href="#" onclick="window.print(); return false;" class="flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-4 sm:px-5 py-2.5 rounded-xl transition duration-200 shadow-lg shadow-cyan-500/25">
+                    <button type="button" onclick="window.print()" class="flex items-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm px-4 sm:px-5 py-2.5 rounded-xl transition duration-200 shadow-lg shadow-cyan-500/25">
                         <i class="fa-solid fa-print"></i>
                         <span class="hidden sm:inline">Print / Save PDF</span>
                         <span class="sm:hidden">PDF</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -561,13 +559,13 @@
         <section class="bg-gradient-to-br from-[#0c1327] via-[#0f172a] to-[#141b36] border border-cyan-500/20 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-2xl relative overflow-hidden animate-fade-in">
             <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-16 -top-16 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
-            
+
             <div class="max-w-4xl relative z-10">
                 <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
                     Justus <span class="vibrant-gradient-text">Majula</span>
                 </h1>
                 <p class="text-xl font-semibold mb-4 bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
-                    Power Generation & Senior Service Engineer
+                    Power Generation &amp; Senior Service Engineer
                 </p>
                 <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                     Specializing in Cummins high-capacity engines, generators, Automatic Transfer Switches (ATS), PLCs, and OBD diagnostics. Over 5 years of hands-on expertise delivering critical power infrastructure for marine, industries, telecommunications, referral hospitals, and commercial high-rises.
@@ -593,15 +591,15 @@
 
         <!-- Navigation Tabs -->
         <div id="tab-nav-wrapper" class="flex justify-center mb-8 animate-fade-in animate-delay-1">
-            <div class="bg-slate-950/90 p-1.5 rounded-full border border-cyan-500/20 inline-flex items-center max-w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
+            <div role="tablist" aria-label="Portfolio sections" class="bg-slate-950/90 p-1.5 rounded-full border border-cyan-500/20 inline-flex items-center max-w-full shadow-xl shadow-cyan-500/5 backdrop-blur-md relative">
                 <!-- Sliding Pill Indicator -->
                 <div id="tab-slider" class="tab-pill-slider active-tab absolute top-1.5 bottom-1.5 left-0 rounded-full pointer-events-none"></div>
-                
-                <button onclick="switchTab('resume')" id="btn-resume" class="tab-btn relative z-10 text-white py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
+
+                <button type="button" role="tab" aria-selected="true" onclick="switchTab('resume')" id="btn-resume" class="tab-btn relative z-10 text-white py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-file-lines text-sm"></i>
                     <span class="tracking-wide">Resume</span>
                 </button>
-                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn relative z-10 text-slate-400 hover:text-cyan-300 py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
+                <button type="button" role="tab" aria-selected="false" onclick="switchTab('projects')" id="btn-projects" class="tab-btn relative z-10 text-slate-400 hover:text-cyan-300 py-2.5 px-5 sm:px-7 rounded-full text-xs sm:text-sm font-bold text-center flex items-center justify-center space-x-2">
                     <span class="relative inline-flex items-center justify-center w-5 h-4 shrink-0">
                         <i class="fa-solid fa-gear text-[12px] gear-spin -mr-0.5 -mt-1"></i>
                         <i class="fa-solid fa-gear text-[9px] gear-spin-reverse mt-1.5"></i>
@@ -612,8 +610,8 @@
         </div>
 
         <!-- SECTION 1: RESUME -->
-        <div id="section-resume" class="space-y-8 animate-fade-in animate-delay-2">
-            
+        <div id="section-resume" role="tabpanel" class="space-y-8 animate-fade-in animate-delay-2">
+
             <!-- Summary -->
             <div class="bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 sm:p-8 card-glow">
                 <h3 class="text-xl font-bold text-white mb-4 flex items-center space-x-3">
@@ -648,16 +646,16 @@
                 </h3>
 
                 <div class="space-y-8 border-l-2 border-cyan-500/40 pl-4 sm:pl-6 ml-2">
-                    
+
                     <!-- Job 1 -->
-                    <div class="relative">
+                    <div class="relative break-inside-avoid">
                         <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                             <h4 class="text-lg font-bold text-white">Senior Service Engineer (Power Generation)</h4>
                             <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full w-max mt-1 sm:mt-0">Nov 2022 – Present</span>
                         </div>
-                        <p class="text-sm font-semibold text-cyan-400/90 mb-4">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
-                        
+                        <p class="text-sm font-semibold text-cyan-400/90 mb-4">Car &amp; General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
+
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-cyan-500/30 transition">
                                 <h5 class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-wrench me-2 text-cyan-400"></i> Mechanical</h5>
@@ -665,7 +663,7 @@
                             </div>
                             <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-indigo-500/30 transition">
                                 <h5 class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-bolt me-2 text-indigo-400"></i> Electrical</h5>
-                                <p class="text-xs text-slate-300 leading-relaxed">Automatic/Manual changeover switches, large distribution & synchronization panels, ATS troubleshooting, and electronic sensor diagnostics.</p>
+                                <p class="text-xs text-slate-300 leading-relaxed">Automatic/Manual changeover switches, large distribution &amp; synchronization panels, ATS troubleshooting, and electronic sensor diagnostics.</p>
                             </div>
                             <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 hover:border-purple-500/30 transition">
                                 <h5 class="text-purple-400 text-xs font-bold uppercase tracking-wider mb-2 flex items-center"><i class="fa-solid fa-laptop-code me-2 text-purple-400"></i> Software</h5>
@@ -675,13 +673,13 @@
                     </div>
 
                     <!-- Job 2 -->
-                    <div class="relative print-page-break">
+                    <div class="relative break-inside-avoid">
                         <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                             <h4 class="text-lg font-bold text-white">Service Engineer (Power Generation)</h4>
                             <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full w-max mt-1 sm:mt-0">Feb 2020 – Nov 2022</span>
                         </div>
-                        <p class="text-sm font-semibold text-slate-400 mb-3">Car & General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
+                        <p class="text-sm font-semibold text-slate-400 mb-3">Car &amp; General Trading Ltd (Cummins Dealer) | Dar es Salaam, Tanzania</p>
                         <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <li class="flex items-start space-x-2.5">
                                 <span class="text-cyan-400 font-bold">•</span>
@@ -707,7 +705,7 @@
                     </div>
 
                     <!-- Job 3 -->
-                    <div class="relative">
+                    <div class="relative break-inside-avoid">
                         <div class="absolute -left-[25px] sm:-left-[33px] top-1.5 w-4 h-4 rounded-full bg-slate-600 ring-4 ring-slate-900"></div>
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
                             <h4 class="text-lg font-bold text-white">Automotive Service Engineer</h4>
@@ -815,7 +813,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
+
                     <!-- Referee Card 1 -->
                     <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/40 transition shadow-md">
                         <div>
@@ -846,7 +844,7 @@
                             </div>
                             <h4 class="text-base font-bold text-white">Eng. Louis George</h4>
                             <p class="text-xs font-semibold text-amber-400">Service Manager</p>
-                            <p class="text-xs text-slate-400 mt-1">Azam marine, Tanzania</p>
+                            <p class="text-xs text-slate-400 mt-1">Azam Marine, Tanzania</p>
                         </div>
                         <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
                             <div class="flex items-center space-x-2">
@@ -867,7 +865,7 @@
                                 IK
                             </div>
                             <h4 class="text-base font-bold text-white">Eng. Illuminata Kaijanante</h4>
-                            <p class="text-xs font-semibold text-purple-400">Sales & Service Coordinator</p>
+                            <p class="text-xs font-semibold text-purple-400">Sales &amp; Service Coordinator</p>
                             <p class="text-xs text-slate-400 mt-1">Car and General Trading Ltd</p>
                         </div>
                         <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
@@ -887,26 +885,26 @@
         </div>
 
         <!-- SECTION 2: PROJECTS -->
-        <div id="section-projects" class="space-y-6 hidden animate-fade-in">
+        <div id="section-projects" role="tabpanel" class="space-y-6 hidden animate-fade-in">
             <div id="print-projects-header" class="hidden items-center space-x-3 border-b-2 border-cyan-600 pb-2 mb-4">
                 <span class="relative inline-flex items-center justify-center w-6 h-5 text-cyan-600">
                     <i class="fa-solid fa-gear text-base gear-spin -mr-0.5 -mt-1"></i>
                     <i class="fa-solid fa-gear text-xs gear-spin-reverse mt-2"></i>
                 </span>
-                <h2 class="text-2xl font-extrabold text-slate-900">Key Engineering Projects & Site Works</h2>
+                <h2 class="text-2xl font-extrabold text-slate-900">Key Engineering Projects &amp; Site Works</h2>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 <!-- Project 1 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-1" data-project-title="Zimbabwe Power Generation Project">
                     <div>
                         <div class="flex justify-between items-start mb-3">
                             <span class="text-xs font-bold text-cyan-300 bg-cyan-500/15 px-3 py-1 rounded-full border border-cyan-500/30">International Deployment</span>
                             <i class="fa-solid fa-globe text-cyan-400 text-xl gear-spin-slow"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Zimbabwe Power Generation Project</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-cyan-400"></i> Cross-Border Industrial & Regional Power Site</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-cyan-400"></i> Cross-Border Industrial &amp; Regional Power Site</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Served as the lead technical engineer for international deployment overseeing heavy generator setup, synchronization, and commissioning.
                         </p>
@@ -920,10 +918,30 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-1')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-1')">
+                            Drag &amp; drop site photos here, or click <strong class="text-cyan-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-2" data-project-title="Mwanga Tower Installation">
                     <div>
                         <div class="flex justify-between items-start mb-3">
                             <span class="text-xs font-bold text-indigo-300 bg-indigo-500/15 px-3 py-1 rounded-full border border-indigo-500/30">Commercial High-Rise</span>
@@ -943,17 +961,37 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-300 border border-indigo-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-2')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-2')">
+                            Drag &amp; drop site photos here, or click <strong class="text-indigo-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-3" data-project-title="Aga Khan Healthcare Centers">
                     <div>
                         <div class="flex justify-between items-start mb-3">
                             <span class="text-xs font-bold text-purple-300 bg-purple-500/15 px-3 py-1 rounded-full border border-purple-500/30">Critical Infrastructure</span>
                             <i class="fa-solid fa-hospital text-purple-400 text-xl project-icon-pulse"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Aga Khan Healthcare Centers</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-purple-400"></i> Referral Hospitals & Regional Health Centers</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-purple-400"></i> Referral Hospitals &amp; Regional Health Centers</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Engineered zero-downtime emergency backup setups for intensive care units (ICUs), surgical facilities, and cold storage units.
                         </p>
@@ -966,17 +1004,37 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-3')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-3')">
+                            Drag &amp; drop site photos here, or click <strong class="text-purple-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-4" data-project-title="Telecom Tower Sites">
                     <div>
                         <div class="flex justify-between items-start mb-3">
                             <span class="text-xs font-bold text-emerald-300 bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-500/30">Telecommunications</span>
                             <i class="fa-solid fa-tower-cell text-emerald-400 text-xl project-icon-pulse"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Telecom Tower Sites</h3>
-                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-emerald-400"></i> National Telecom Towers & Remote Assets</p>
+                        <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot me-1 text-emerald-400"></i> National Telecom Towers &amp; Remote Assets</p>
                         <p class="text-sm text-slate-300 leading-relaxed mb-4">
                             Maintained high-uptime remote generator units for telecommunication towers to guarantee continuous mobile network availability.
                         </p>
@@ -989,13 +1047,33 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-4')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-4')">
+                            Drag &amp; drop site photos here, or click <strong class="text-emerald-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-5" data-project-title="Marine Vessel Auxiliary & Overhaul">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-bold text-amber-300 bg-amber-500/15 px-3 py-1 rounded-full border border-amber-500/30">Marine Propulsion & Auxiliary</span>
+                            <span class="text-xs font-bold text-amber-300 bg-amber-500/15 px-3 py-1 rounded-full border border-amber-500/30">Marine Propulsion &amp; Auxiliary</span>
                             <i class="fa-solid fa-ship text-amber-400 text-xl project-icon-float"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Marine Vessel Auxiliary &amp; Overhaul</h3>
@@ -1012,10 +1090,30 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-5')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-5')">
+                            Drag &amp; drop site photos here, or click <strong class="text-amber-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between">
+                <div class="project-card bg-gradient-to-br from-slate-900 to-[#0e1628] border border-slate-800 rounded-2xl p-6 card-glow flex flex-col justify-between" data-project-id="proj-6" data-project-title="Industrial Prime Power Plants (Up to 2000 kVA)">
                     <div>
                         <div class="flex justify-between items-start mb-3">
                             <span class="text-xs font-bold text-rose-300 bg-rose-500/15 px-3 py-1 rounded-full border border-rose-500/30">Heavy Manufacturing</span>
@@ -1035,6 +1133,26 @@
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Add / Upload Picture Segment -->
+                    <div class="mt-5 pt-4 border-t border-slate-800/80 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-images"></i> Site Photos (<span class="photo-count">0</span>)
+                            </span>
+                            <div class="upload-controls">
+                                <label class="cursor-pointer inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/30 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span>Add Picture</span>
+                                    <input type="file" accept="image/*" multiple class="hidden project-photo-input" onchange="handlePhotoUpload(event, 'proj-6')">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="upload-controls upload-dropzone rounded-xl border border-dashed border-slate-700/90 bg-slate-950/50 px-3 py-2.5 text-center text-[11px] text-slate-400 transition" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'proj-6')">
+                            Drag &amp; drop site photos here, or click <strong class="text-rose-300">Add Picture</strong>
+                        </div>
+                        <div class="project-photo-gallery grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+                    </div>
                 </div>
 
             </div>
@@ -1042,6 +1160,21 @@
         </div>
 
     </main>
+
+    <!-- Lightbox Modal for Viewing Uploaded Project Pictures -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-sm p-4" onclick="closeLightbox(event)">
+        <div class="relative max-w-4xl w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 shadow-2xl" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between mb-3">
+                <span id="lightbox-caption" class="text-sm font-semibold text-cyan-300 truncate pr-4"></span>
+                <button type="button" onclick="closeLightbox()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition" aria-label="Close preview">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="flex items-center justify-center bg-slate-950 rounded-xl overflow-hidden max-h-[75vh]">
+                <img id="lightbox-img" src="" alt="Project site photo" class="max-h-[75vh] w-auto object-contain">
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="border-t border-slate-800/80 bg-[#04060d] py-8 text-center text-xs text-slate-500">
@@ -1054,9 +1187,211 @@
         </div>
     </footer>
 
-    <!-- Tab Toggle Script -->
+    <!-- Tab, Theme & Project Photo Upload Script -->
     <script>
+        const PHOTO_STORAGE_KEY = 'jm_portfolio_project_photos_v1';
         let currentTab = 'resume';
+        let projectPhotos = {};
+        let toastTimer = null;
+
+        function showToast(message) {
+            const banner = document.getElementById('toast-banner');
+            const textEl = document.getElementById('toast-message');
+            if (!banner || !textEl) return;
+            textEl.textContent = message;
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(hideToast, 4500);
+        }
+
+        function hideToast() {
+            const banner = document.getElementById('toast-banner');
+            if (!banner) return;
+            banner.classList.add('hidden');
+            banner.classList.remove('flex');
+        }
+
+        function loadStoredPhotos() {
+            try {
+                const raw = localStorage.getItem(PHOTO_STORAGE_KEY);
+                projectPhotos = raw ? JSON.parse(raw) : {};
+            } catch {
+                projectPhotos = {};
+            }
+        }
+
+        function saveStoredPhotos() {
+            try {
+                localStorage.setItem(PHOTO_STORAGE_KEY, JSON.stringify(projectPhotos));
+                return true;
+            } catch {
+                showToast('Browser storage limit reached. Remove a few uploaded photos to add more.');
+                return false;
+            }
+        }
+
+        function compressImageFile(file, maxDim = 1000, quality = 0.78) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let { width, height } = img;
+                        if (width > maxDim || height > maxDim) {
+                            if (width > height) {
+                                height = Math.round((height * maxDim) / width);
+                                width = maxDim;
+                            } else {
+                                width = Math.round((width * maxDim) / height);
+                                height = maxDim;
+                            }
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve({
+                            name: file.name,
+                            dataUrl: canvas.toDataURL('image/jpeg', quality)
+                        });
+                    };
+                    img.onerror = reject;
+                    img.src = reader.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function addFilesToProject(fileList, projectId) {
+            const files = Array.from(fileList || []).filter(f => f.type.startsWith('image/'));
+            if (!files.length) return;
+
+            if (!Array.isArray(projectPhotos[projectId])) {
+                projectPhotos[projectId] = [];
+            }
+
+            const previousSnapshot = [...projectPhotos[projectId]];
+
+            for (const file of files) {
+                try {
+                    const compressed = await compressImageFile(file);
+                    projectPhotos[projectId].push({
+                        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                        name: compressed.name,
+                        src: compressed.dataUrl
+                    });
+                } catch {
+                    // Skip unreadable image files
+                }
+            }
+
+            if (!saveStoredPhotos()) {
+                projectPhotos[projectId] = previousSnapshot;
+                return;
+            }
+            renderProjectPhotos(projectId);
+        }
+
+        function handlePhotoUpload(event, projectId) {
+            addFilesToProject(event.target.files, projectId);
+            event.target.value = '';
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('border-cyan-400', 'bg-cyan-500/10');
+        }
+
+        function handleDragLeave(event) {
+            event.currentTarget.classList.remove('border-cyan-400', 'bg-cyan-500/10');
+        }
+
+        function handleDrop(event, projectId) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('border-cyan-400', 'bg-cyan-500/10');
+            if (event.dataTransfer && event.dataTransfer.files) {
+                addFilesToProject(event.dataTransfer.files, projectId);
+            }
+        }
+
+        function removeProjectPhoto(projectId, photoId, event) {
+            event.stopPropagation();
+            if (!Array.isArray(projectPhotos[projectId])) return;
+            projectPhotos[projectId] = projectPhotos[projectId].filter(p => p.id !== photoId);
+            saveStoredPhotos();
+            renderProjectPhotos(projectId);
+        }
+
+        function renderProjectPhotos(projectId) {
+            const card = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+            if (!card) return;
+
+            const photos = projectPhotos[projectId] || [];
+            const countEl = card.querySelector('.photo-count');
+            const galleryEl = card.querySelector('.project-photo-gallery');
+            const projectTitle = card.dataset.projectTitle || 'Project Photo';
+
+            if (countEl) {
+                countEl.textContent = photos.length;
+            }
+            if (!galleryEl) return;
+
+            galleryEl.innerHTML = '';
+            photos.forEach(photo => {
+                const item = document.createElement('div');
+                item.className = 'group relative rounded-xl overflow-hidden border border-slate-700/80 bg-slate-950 h-24 cursor-pointer';
+                item.onclick = () => openLightbox(photo.src, `${projectTitle} — ${photo.name}`);
+
+                const img = document.createElement('img');
+                img.src = photo.src;
+                img.alt = photo.name;
+                img.className = 'project-photo-thumb w-full h-24 object-cover group-hover:scale-105 transition duration-300';
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'photo-remove-btn absolute top-1.5 right-1.5 w-6 h-6 rounded-md bg-slate-950/85 hover:bg-rose-600 text-slate-200 hover:text-white flex items-center justify-center text-xs transition';
+                removeBtn.title = 'Remove photo';
+                removeBtn.setAttribute('aria-label', `Remove ${photo.name}`);
+                removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+                removeBtn.onclick = (e) => removeProjectPhoto(projectId, photo.id, e);
+
+                item.appendChild(img);
+                item.appendChild(removeBtn);
+                galleryEl.appendChild(item);
+            });
+        }
+
+        function renderAllProjectPhotos() {
+            document.querySelectorAll('.project-card[data-project-id]').forEach(card => {
+                renderProjectPhotos(card.dataset.projectId);
+            });
+        }
+
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            if (!modal || !img) return;
+            img.src = src;
+            if (cap) cap.textContent = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target && event.target.id !== 'lightbox-modal') return;
+            const modal = document.getElementById('lightbox-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
 
         function positionTabSlider(btn) {
             const tabSlider = document.getElementById('tab-slider');
@@ -1075,47 +1410,55 @@
             if (tabName === 'resume') {
                 projectsSec.classList.add('hidden');
                 projectsSec.classList.remove('animate-tab-slide');
-                
+
                 resumeSec.classList.remove('hidden', 'animate-fade-in', 'animate-delay-2', 'animate-tab-slide');
                 void resumeSec.offsetWidth;
                 resumeSec.classList.add('animate-tab-slide');
-                
+
                 positionTabSlider(btnResume);
                 btnResume.classList.add('text-white');
                 btnResume.classList.remove('text-slate-400');
-                
+                btnResume.setAttribute('aria-selected', 'true');
+
                 btnProjects.classList.remove('text-white');
                 btnProjects.classList.add('text-slate-400');
+                btnProjects.setAttribute('aria-selected', 'false');
             } else {
                 resumeSec.classList.add('hidden');
                 resumeSec.classList.remove('animate-tab-slide');
-                
+
                 projectsSec.classList.remove('hidden', 'animate-fade-in', 'animate-tab-slide');
                 void projectsSec.offsetWidth;
                 projectsSec.classList.add('animate-tab-slide');
-                
+
                 positionTabSlider(btnProjects);
                 btnProjects.classList.add('text-white');
                 btnProjects.classList.remove('text-slate-400');
-                
+                btnProjects.setAttribute('aria-selected', 'true');
+
                 btnResume.classList.remove('text-white');
                 btnResume.classList.add('text-slate-400');
+                btnResume.setAttribute('aria-selected', 'false');
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            positionTabSlider(document.getElementById('btn-resume'));
-        });
-
-        window.addEventListener('resize', () => {
+        function syncActiveTabSlider() {
             positionTabSlider(document.getElementById(currentTab === 'resume' ? 'btn-resume' : 'btn-projects'));
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadStoredPhotos();
+            renderAllProjectPhotos();
+            syncActiveTabSlider();
         });
+        window.addEventListener('load', syncActiveTabSlider);
+        window.addEventListener('resize', syncActiveTabSlider);
 
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
             body.classList.toggle('light-mode');
-            
+
             if (body.classList.contains('light-mode')) {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
@@ -1126,4 +1469,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
